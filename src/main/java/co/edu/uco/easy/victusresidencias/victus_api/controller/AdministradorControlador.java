@@ -2,7 +2,6 @@ package co.edu.uco.easy.victusresidencias.victus_api.controller;
 
 import co.edu.uco.easy.victusresidencias.victus_api.controller.response.GenerateResponse;
 import co.edu.uco.easy.victusresidencias.victus_api.controller.response.concrete.AdministratorResponse;
-import co.edu.uco.easy.victusresidencias.victus_api.controller.response.concrete.CityResponse;
 import co.edu.uco.easy.victusresidencias.victus_api.controller.response.concrete.GenericResponse;
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.exceptions.BusinessLogicVictusResidenciasException;
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.exceptions.UcoApplicationException;
@@ -10,7 +9,6 @@ import co.edu.uco.easy.victusresidencias.victus_api.dao.DAOFactory;
 import co.edu.uco.easy.victusresidencias.victus_api.dao.enums.DAOSource;
 import co.edu.uco.easy.victusresidencias.victus_api.dao.impl.postgresql.PostgreSqlDAOFactory;
 import co.edu.uco.easy.victusresidencias.victus_api.entity.AdministratorEntity;
-import co.edu.uco.easy.victusresidencias.victus_api.entity.CityEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

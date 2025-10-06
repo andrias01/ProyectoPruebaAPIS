@@ -63,40 +63,10 @@ public final class PostgreSqlDAOFactory extends DAOFactory {
 	}
 
 	@Override
-	public CityDAO getCityDAO() {
-		return new CityPostgreSqlDAO(connection);
-	}
-
-	@Override
-	public StateDAO getStateDAO() {
-		return new StatePostgreSqlDAO(connection);
-				
-	}
-
-	@Override
-	public PorteroDAO getPorteroDAO() {
-		return new PorteroPostgreSqlDAO(connection);
-	}
-
-	@Override
-	public CountryDAO getCountryDAO() {
-		return new CountryPostgreSQLDAO(connection);
-	}
-
-	@Override
-	public ResidentialComplexDAO getResidentialComplexDAO() {return new ResidentialComplexPostgreSqlDAO(connection);}
-
-	@Override
-	public CommonZoneDAO getCommonZoneDAO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public AdministratorDAO getAdministratorDAO() {
 		return new AdministratorPostgreSQLDAO(connection);
 	}
 
-
+	
 
 }
