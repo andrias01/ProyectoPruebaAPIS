@@ -14,6 +14,7 @@ co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\ObjectHelper.c
 co\edu\uco\easy\victusresidencias\victus_api\entity\AdministratorEntity.class
 co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\TextCopied.class
 co\edu\uco\easy\victusresidencias\victus_api\controller\response\ResponseWithData.class
+co\edu\uco\easy\victusresidencias\victus_api\repository\AdministratorRepository.class
 co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\VictusResidenciasException.class
 co\edu\uco\easy\victusresidencias\victus_api\dao\DAOFactory.class
 co\edu\uco\easy\victusresidencias\victus_api\dao\enums\DAOSource.class
@@ -24,6 +25,7 @@ co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\BusinessLog
 co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\enums\Layer.class
 co\edu\uco\easy\victusresidencias\victus_api\dao\impl\postgresql\AdministratorPostgreSQLDAO.class
 co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\DTOVictusResidenciasException.class
+co\edu\uco\easy\victusresidencias\victus_api\service\AdministratorService.class
 co\edu\uco\easy\victusresidencias\victus_api\controller\AdministradorControlador.class
 co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\UUIDHelper.class
 co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\UcoApplicationException.class

@@ -62,7 +62,7 @@ public class AdministradorControlador {
                 response.setMessages(messages);
                 return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
             }
-            
+
             response.setData(List.of(entity.get()));
             messages.add(String.format("El %s fue consultado satisfactoriamente.", NAMEclassSingular));
             response.setMessages(messages);
@@ -81,14 +81,17 @@ public class AdministradorControlador {
 
         try {
             if (administrador.getName() == null || administrador.getName().isEmpty()) {
-                String userMessage = String.format("El %s es requerido para poder registrar la información.", NAMEclassSingular);
-                String technicalMessage = String.format("El %s en la clase %s llegó nulo o vacío.", NAMEclassSingular, AdministratorEntity.class.getSimpleName());
+                String userMessage = String.format("El %s es requerido para poder registrar la información.",
+                        NAMEclassSingular);
+                String technicalMessage = String.format("El %s en la clase %s llegó nulo o vacío.", NAMEclassSingular,
+                        AdministratorEntity.class.getSimpleName());
                 throw BusinessLogicVictusResidenciasException.crear(userMessage, technicalMessage);
             }
-            
+
             if (adminService.existsByName(administrador.getName())) {
                 String userMessage = String.format("El %s ya existe", NAMEclassSingular);
-                String technicalMessage = String.format("El %s con el nombre ", NAMEclassSingular) + administrador.getName() + "' ya existe en la base de datos.";
+                String technicalMessage = String.format("El %s con el nombre ", NAMEclassSingular)
+                        + administrador.getName() + "' ya existe en la base de datos.";
                 throw BusinessLogicVictusResidenciasException.crear(userMessage, technicalMessage);
             }
 
@@ -104,7 +107,8 @@ public class AdministradorControlador {
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } catch (Exception exception) {
-            messages.add(String.format("Se ha presentado un problema inesperado al registrar el %s.", NAMEclassSingular));
+            messages.add(
+                    String.format("Se ha presentado un problema inesperado al registrar el %s.", NAMEclassSingular));
             exception.printStackTrace();
             var response = new GenericResponse();
             response.setMessages(messages);
@@ -113,49 +117,27 @@ public class AdministradorControlador {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AdministratorResponse> update(@PathVariable UUID id, @RequestBody AdministratorEntity administrador) {
+    public ResponseEntity<AdministratorResponse> update(@PathVariable UUID id,
+            @RequestBody AdministratorEntity administrador) {
         var responseWithData = new AdministratorResponse();
         var messages = new ArrayList<String>();
 
         try {
             var existingAdmin = adminService.findById(id);
             if (existingAdmin.isEmpty()) {
-                messages.add(String.format("No se encontró un %s con el ID especificado.", NAMEclassSingular));
-                responseWithData.setMessages(messages);
-                return new ResponseEntity<>(responseWithData, HttpStatus.NOT_FOUND);
+                return buildNotFoundResponse(responseWithData, messages);
             }
 
-            var existingAdministradorEntity = existingAdmin.get();
-            
-            // Actualizar campos si no están vacíos
-            if (administrador.getName() != null && !administrador.getName().isEmpty()) {
-                existingAdministradorEntity.setName(administrador.getName());
-            }
-            if (administrador.getLastName() != null && !administrador.getLastName().isEmpty()) {
-                existingAdministradorEntity.setLastName(administrador.getLastName());
-            }
-            if (administrador.getIdType() != null && !administrador.getIdType().isEmpty()) {
-                existingAdministradorEntity.setIdType(administrador.getIdType());
-            }
-            if (administrador.getIdNumber() != null && !administrador.getIdNumber().isEmpty()) {
-                existingAdministradorEntity.setIdNumber(administrador.getIdNumber());
-            }
-            if (administrador.getContactNumber() != null && !administrador.getContactNumber().isEmpty()) {
-                existingAdministradorEntity.setContactNumber(administrador.getContactNumber());
-            }
-            if (administrador.getEmail() != null && !administrador.getEmail().isEmpty()) {
-                existingAdministradorEntity.setEmail(administrador.getEmail());
-            }
-            if (administrador.getPassword() != null && !administrador.getPassword().isEmpty()) {
-                existingAdministradorEntity.setPassword(administrador.getPassword());
-            }
+            var updatedAdmin = updateAdministratorFields(existingAdmin.get(), administrador);
 
-            adminService.save(existingAdministradorEntity);
-            
-            messages.add(String.format("El %s ", NAMEclassSingular) + existingAdministradorEntity.getName() + " se actualizó correctamente.");
-            responseWithData.setData(List.of(existingAdministradorEntity));
+            adminService.save(updatedAdmin);
+
+            messages.add(
+                    String.format("El %s %s se actualizó correctamente.", NAMEclassSingular, updatedAdmin.getName()));
+            responseWithData.setData(List.of(updatedAdmin));
             responseWithData.setMessages(messages);
             return new ResponseEntity<>(responseWithData, HttpStatus.OK);
+
         } catch (Exception e) {
             e.printStackTrace();
             messages.add(String.format("Error al actualizar el %s. Por favor intente nuevamente.", NAMEclassSingular));
@@ -171,8 +153,10 @@ public class AdministradorControlador {
 
         try {
             if (id == null) {
-                var userMessage = String.format("El ID del %S es requerido para poder eliminar la información.", NAMEclassSingular);
-                var technicalMessage = String.format("El ID del %s en la clase AdministratorEntity llegó nulo.", NAMEclassSingular);
+                var userMessage = String.format("El ID del %S es requerido para poder eliminar la información.",
+                        NAMEclassSingular);
+                var technicalMessage = String.format("El ID del %s en la clase AdministratorEntity llegó nulo.",
+                        NAMEclassSingular);
                 throw BusinessLogicVictusResidenciasException.crear(userMessage, technicalMessage);
             }
 
@@ -197,5 +181,34 @@ public class AdministradorControlador {
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    private AdministratorEntity updateAdministratorFields(AdministratorEntity existing, AdministratorEntity updates) {
+        if (isNotEmpty(updates.getName()))
+            existing.setName(updates.getName());
+        if (isNotEmpty(updates.getLastName()))
+            existing.setLastName(updates.getLastName());
+        if (isNotEmpty(updates.getIdType()))
+            existing.setIdType(updates.getIdType());
+        if (isNotEmpty(updates.getIdNumber()))
+            existing.setIdNumber(updates.getIdNumber());
+        if (isNotEmpty(updates.getContactNumber()))
+            existing.setContactNumber(updates.getContactNumber());
+        if (isNotEmpty(updates.getEmail()))
+            existing.setEmail(updates.getEmail());
+        if (isNotEmpty(updates.getPassword()))
+            existing.setPassword(updates.getPassword());
+        return existing;
+    }
+
+    private boolean isNotEmpty(String value) {
+        return value != null && !value.isEmpty();
+    }
+
+    private ResponseEntity<AdministratorResponse> buildNotFoundResponse(AdministratorResponse response,
+            List<String> messages) {
+        messages.add(String.format("No se encontró un %s con el ID especificado.", NAMEclassSingular));
+        response.setMessages(messages);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }

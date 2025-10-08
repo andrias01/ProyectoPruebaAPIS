@@ -32,7 +32,6 @@ public final class PostgreSqlDAOFactory extends DAOFactory {
     protected void openConnection() {
         SqlConnectionHelper.validateIfConnectionIsOpen(connection);
         connection = SqlConnectionHelper.openConnectionPostgreSQL(url, user, password);
-        System.out.println("✅ Conectado correctamente a la base de datos PostgreSQL (credenciales Vault)");
     }
 
     @Override
@@ -53,7 +52,6 @@ public final class PostgreSqlDAOFactory extends DAOFactory {
     @Override
     public void closeConnection() {
         SqlConnectionHelper.closeConnection(connection);
-        System.out.println("🔒 Desconectado de la base de datos");
     }
 
     @Override
