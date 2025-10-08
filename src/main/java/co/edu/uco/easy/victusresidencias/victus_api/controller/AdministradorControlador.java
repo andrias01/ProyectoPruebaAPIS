@@ -35,7 +35,7 @@ public class AdministradorControlador {
     public ResponseEntity<AdministratorResponse> retrieveAll() {
         var response = new AdministratorResponse();
         var messages = new ArrayList<String>();
-
+        System.out.println(adminService.findAll());
         try {
             var entities = adminService.findAll();
             response.setData(entities);
@@ -49,6 +49,7 @@ public class AdministradorControlador {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<AdministratorResponse> retrieveById(@PathVariable UUID id) {
@@ -211,4 +212,5 @@ public class AdministradorControlador {
         response.setMessages(messages);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
 }

@@ -13,7 +13,7 @@ public abstract class DAOFactory {
 		this.environment = environment;
 	}
 	
-	public final static DAOFactory getFactory(final DAOSource source, final Environment environment) {
+	public static final DAOFactory getFactory(final DAOSource source, final Environment environment) {
 			switch (source) {
 			case POSTGRESQL:
 				return new PostgreSqlDAOFactory(environment); // Retorna una instancia de PostgreSqlDAOFactory con el environment

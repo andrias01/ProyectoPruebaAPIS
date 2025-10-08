@@ -6,28 +6,28 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "administrators")
+@Table(name = "administrador")
 public class AdministratorEntity extends DomainEntity {
-	
-	@Column(nullable = false)
+
+	@Column(nullable = false, name = "nombre")
 	private String name;
-	
-	@Column(name = "last_name")
+
+	@Column(name = "apellido")
 	private String lastName;
-	
-	@Column(name = "id_type")
+
+	@Column(name = "tipo_documento")
 	private String idType;
-	
-	@Column(name = "id_number")
+
+	@Column(name = "numero_documento")
 	private String idNumber;
-	
-	@Column(name = "contact_number")
+
+	@Column(name = "numero_contacto")
 	private String contactNumber;
-	
+
 	@Column(nullable = false, unique = true)
 	private String email;
-	
-	@Column(nullable = false)
+
+	@Column(nullable = false, name = "contraseña")
 	private String password;
 
 	public AdministratorEntity() {

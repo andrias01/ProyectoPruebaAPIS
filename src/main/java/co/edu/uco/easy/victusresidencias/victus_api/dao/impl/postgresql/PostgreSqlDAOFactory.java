@@ -13,13 +13,13 @@ public final class PostgreSqlDAOFactory extends DAOFactory {
 
     private Connection connection;
 
-    @Value("${spring.datasource.url}")
+    @Value("${spring.datasource.railway.url}")
     private String url;
 
-    @Value("${spring.datasource.username}")
+    @Value("${spring.datasource.railway.username}")
     private String user;
 
-    @Value("${spring.datasource.password:NOT_FOUND}")
+    @Value("${spring.datasource.railway.password:NOT_FOUND}")
     private String password;
 
     public PostgreSqlDAOFactory(Environment environment) {
