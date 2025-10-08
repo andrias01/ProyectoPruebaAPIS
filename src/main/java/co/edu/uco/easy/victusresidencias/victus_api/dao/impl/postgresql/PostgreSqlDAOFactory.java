@@ -26,15 +26,7 @@ public final class PostgreSqlDAOFactory extends DAOFactory {
         super(environment);
     }
 
-    @PostConstruct
-    private void init() {
-        System.out.println("🔍 Verificando variables inyectadas desde Vault:");
-        System.out.println("URL: " + url);
-        System.out.println("Usuario: " + user);
-        System.out.println("Password: " + (password.equals("NOT_FOUND") ? "❌ NO ENCONTRADA" : "********"));
-
-        openConnection();
-    }
+   
 
     @Override
     protected void openConnection() {
