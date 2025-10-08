@@ -1,17 +1,33 @@
 package co.edu.uco.easy.victusresidencias.victus_api.entity;
 
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.helpers.*;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
+@Entity
+@Table(name = "administrators")
 public class AdministratorEntity extends DomainEntity {
 	
+	@Column(nullable = false)
 	private String name;
+	
+	@Column(name = "last_name")
 	private String lastName;
-	private String idType; // Cambiado de documentType a idType
-	private String idNumber; // Cambiado de documentNumber a idNumber
+	
+	@Column(name = "id_type")
+	private String idType;
+	
+	@Column(name = "id_number")
+	private String idNumber;
+	
+	@Column(name = "contact_number")
 	private String contactNumber;
+	
+	@Column(nullable = false, unique = true)
 	private String email;
+	
+	@Column(nullable = false)
 	private String password;
 
 	public AdministratorEntity() {

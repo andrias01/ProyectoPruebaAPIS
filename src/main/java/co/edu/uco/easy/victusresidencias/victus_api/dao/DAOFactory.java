@@ -1,15 +1,22 @@
 package co.edu.uco.easy.victusresidencias.victus_api.dao;
 
+import org.springframework.core.env.Environment;
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.exceptions.DataVictusResidenciasException;
 import co.edu.uco.easy.victusresidencias.victus_api.dao.enums.DAOSource;
 import co.edu.uco.easy.victusresidencias.victus_api.dao.impl.postgresql.PostgreSqlDAOFactory;
 
 public abstract class DAOFactory {
 	
-	public final static DAOFactory getFactory(final DAOSource source) {
+	protected final Environment environment;
+	
+	protected DAOFactory(Environment environment) {
+		this.environment = environment;
+	}
+	
+	public final static DAOFactory getFactory(final DAOSource source, final Environment environment) {
 			switch (source) {
 			case POSTGRESQL:
-				return new PostgreSqlDAOFactory(); // Retorna una instancia de PostgreSqlDAOFactory
+				return new PostgreSqlDAOFactory(environment); // Retorna una instancia de PostgreSqlDAOFactory con el environment
 			case SQLSERVER:
 				return null;
 			default:

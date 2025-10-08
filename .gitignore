@@ -12,6 +12,8 @@ HELP.md
 .settings
 .springBeans
 .sts4-cache
+target/
+
 
 ### IntelliJ IDEA ###
 .idea
@@ -32,3 +34,8 @@ build/
 ### VS Code ###
 .vscode/
 /.metadata/
+
+# Environment Variables
+.env
+*.env
+nota.txt

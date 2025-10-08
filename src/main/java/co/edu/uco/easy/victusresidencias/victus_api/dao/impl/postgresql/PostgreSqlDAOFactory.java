@@ -1,72 +1,71 @@
 package co.edu.uco.easy.victusresidencias.victus_api.dao.impl.postgresql;
 
-
-
 import java.sql.Connection;
-
-
-
-
-
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
+import jakarta.annotation.PostConstruct;
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.helpers.SqlConnectionHelper;
 import co.edu.uco.easy.victusresidencias.victus_api.dao.*;
 
+@Component
 public final class PostgreSqlDAOFactory extends DAOFactory {
 
-	private Connection connection;
-//	private final String url = "jdbc:postgresql://dpg-cvmbeb63jp1c7381j380-a.oregon-postgres.render.com/backendvictusdb";
-//	private final String user = "teamvictus";
-//	private final String password = "RLR8kFTHUyIwbKO5HymDtLboRe7NnROW";
+    private Connection connection;
 
-	private final String url = "jdbc:postgresql://localhost:5432/LocalBaseDatosJava";
-	private final String user = "postgres";
-	private final String password = "123456";
-	//postgresql://postgres:zamaSRiLZrfwYFewRqWwFsgffHrvxSrA@switchyard.proxy.rlwy.net:35862/railway
-//	private final String url = "jdbc:postgresql://switchyard.proxy.rlwy.net:35862/railway";
-//	private final String user = "postgres";
-//	private final String password = "zamaSRiLZrfwYFewRqWwFsgffHrvxSrA";
-//
-//	private final String urlGeneral = "jdbc:postgresql://postgres:zamaSRiLZrfwYFewRqWwFsgffHrvxSrA@switchyard.proxy.rlwy.net:35862/railway";
+    @Value("${spring.datasource.url}")
+    private String url;
 
-	public PostgreSqlDAOFactory() {
-		openConnection();
-	}
+    @Value("${spring.datasource.username}")
+    private String user;
 
-	@Override
-	protected void openConnection() {
-		SqlConnectionHelper.validateIfConnectionIsOpen(connection);
-		//connection =SqlConnectionHelper.openConnectionPostgreSQL(urlGeneral);
-		connection = SqlConnectionHelper.openConnectionPostgreSQL(url, user, password);
-		System.out.println("Buen trabajo se conecto a la base de datos");
-	}
+    @Value("${spring.datasource.password:NOT_FOUND}")
+    private String password;
 
-	@Override
-	public void initTransaction() {
-		SqlConnectionHelper.initTransaction(connection);
-	}
+    public PostgreSqlDAOFactory(Environment environment) {
+        super(environment);
+    }
 
-	@Override
-	public void commitTransaction() {
-		SqlConnectionHelper.commitTransaction(connection);
-	}
+    @PostConstruct
+    private void init() {
+        System.out.println("🔍 Verificando variables inyectadas desde Vault:");
+        System.out.println("URL: " + url);
+        System.out.println("Usuario: " + user);
+        System.out.println("Password: " + (password.equals("NOT_FOUND") ? "❌ NO ENCONTRADA" : "********"));
 
-	@Override
-	public void rollbackTransaction() {
-		SqlConnectionHelper.rollbackTransaction(connection);
-	}
+        openConnection();
+    }
 
-	@Override
-	
-	public void closeConnection() {
-		SqlConnectionHelper.closeConnection(connection);
-		System.out.println("Buen trabajo se Desconecto a la base de datos");
-	}
+    @Override
+    protected void openConnection() {
+        SqlConnectionHelper.validateIfConnectionIsOpen(connection);
+        connection = SqlConnectionHelper.openConnectionPostgreSQL(url, user, password);
+        System.out.println("✅ Conectado correctamente a la base de datos PostgreSQL (credenciales Vault)");
+    }
 
-	@Override
-	public AdministratorDAO getAdministratorDAO() {
-		return new AdministratorPostgreSQLDAO(connection);
-	}
+    @Override
+    public void initTransaction() {
+        SqlConnectionHelper.initTransaction(connection);
+    }
 
-	
+    @Override
+    public void commitTransaction() {
+        SqlConnectionHelper.commitTransaction(connection);
+    }
 
+    @Override
+    public void rollbackTransaction() {
+        SqlConnectionHelper.rollbackTransaction(connection);
+    }
+
+    @Override
+    public void closeConnection() {
+        SqlConnectionHelper.closeConnection(connection);
+        System.out.println("🔒 Desconectado de la base de datos");
+    }
+
+    @Override
+    public AdministratorDAO getAdministratorDAO() {
+        return new AdministratorPostgreSQLDAO(connection);
+    }
 }

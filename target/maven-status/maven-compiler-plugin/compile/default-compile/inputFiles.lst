@@ -23,6 +23,7 @@ E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\GenerateResponse.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\DataVictusResidenciasException.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\DTOVictusResidenciasException.java
+E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\service\AdministratorService.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\ControllerVictusResidenciasException.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\concrete\AdministratorResponse.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\SqlConnectionHelper.java
@@ -31,5 +32,6 @@ E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\ObjectHelper.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\impl\postgresql\AdministratorPostgreSqlDAO.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\impl\postgresql\PostgreSqlDAOFactory.java
+E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\repository\AdministratorRepository.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\TextCopied.java
 E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\VictusRApplication.java
