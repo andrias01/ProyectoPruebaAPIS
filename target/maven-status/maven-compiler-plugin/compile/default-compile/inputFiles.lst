@@ -1,37 +1,37 @@
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\TextHelper.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\DateHelper.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\UUIDHelper.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\AdministradorControlador.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\impl\sql\SqlDAO.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\AdministratorDAO.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\entity\AdministratorEntity.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\DAOFactory.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\RetrieveDAO.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\enums\Layer.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\concrete\GenericResponse.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\ResponseWithData.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\UpdateDAO.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\entity\DomainEntity.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\enums\DAOSource.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\NumericHelper.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\Response.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\config\CorsConfig.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\BusinessLogicVictusResidenciasException.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\EntityVictusResidenciasException.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\VictusResidenciasException.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\CreateDAO.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\GenerateResponse.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\DataVictusResidenciasException.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\DTOVictusResidenciasException.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\service\AdministratorService.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\ControllerVictusResidenciasException.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\concrete\AdministratorResponse.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\SqlConnectionHelper.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\DeleteDAO.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\UcoApplicationException.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\ObjectHelper.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\impl\postgresql\AdministratorPostgreSqlDAO.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\impl\postgresql\PostgreSqlDAOFactory.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\repository\AdministratorRepository.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\TextCopied.java
-E:\Card SK hynix 2TB\development2025\SoftwareVICTUS\backendRender\Prueba de apis\Eclipce\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\VictusRApplication.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\config\CorsConfig.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\DTOVictusResidenciasException.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\ResponseWithData.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\ControllerVictusResidenciasException.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\impl\postgresql\PostgreSqlDAOFactory.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\EntityVictusResidenciasException.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\VictusRApplication.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\service\AdministratorService.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\impl\postgresql\AdministratorPostgreSqlDAO.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\concrete\AdministratorResponse.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\concrete\GenericResponse.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\UcoApplicationException.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\DAOFactory.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\DeleteDAO.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\entity\AdministratorEntity.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\ObjectHelper.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\AdministradorControlador.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\GenerateResponse.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\NumericHelper.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\DataVictusResidenciasException.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\AdministratorDAO.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\DateHelper.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\UUIDHelper.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\TextHelper.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\VictusResidenciasException.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\UpdateDAO.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\BusinessLogicVictusResidenciasException.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\enums\DAOSource.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\controller\response\Response.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\SqlConnectionHelper.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\RetrieveDAO.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\helpers\TextCopied.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\CreateDAO.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\repository\AdministratorRepository.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\dao\impl\sql\SqlDAO.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\entity\DomainEntity.java
+C:\Users\andre\Documents\Semestre 7 repeat\Software 2\Parte 3\WorkSpaceSoft2\VictusLittleBackend\src\main\java\co\edu\uco\easy\victusresidencias\victus_api\crosscutting\exceptions\enums\Layer.java
