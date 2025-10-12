@@ -2,7 +2,7 @@ package co.edu.uco.easy.victusresidencias.victus_api.crosscutting.exceptions;
 
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.exceptions.enums.Layer;
 
-public class ControllerVictusResidenciasException extends VictusResidenciasException {
+public class ControllerVictusResidenciasException extends UcoApplicationException {
 
 	private static final long serialVersionUID = 1L;
 

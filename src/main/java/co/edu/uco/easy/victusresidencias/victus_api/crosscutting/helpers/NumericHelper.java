@@ -2,34 +2,30 @@ package co.edu.uco.easy.victusresidencias.victus_api.crosscutting.helpers;
 
 public final class NumericHelper {
 
-	private static final NumericHelper instance;
-	public static final int CERO = 0; //nueva linea para poner un numero por defecto
-
-	static {
-		instance = new NumericHelper();
-	}
+	/**
+	 * This class provides utility methods for numeric operations.
+	 * Implemented as a utility class with private constructor to prevent instantiation.
+	 */
+	public static final int CERO = 0;
 
 	private NumericHelper() {
-
+		// Private constructor to prevent instantiation
+		// This is a utility class that should not be instantiated
 	}
 
-	public static final NumericHelper getNumericHelper() {
-		return instance;
-	}
-
-	public final <T extends Number> boolean isGreat(final T numberOne, final T numberTwo) {
+	public static final <T extends Number> boolean isGreat(final T numberOne, final T numberTwo) {
 		return numberOne.doubleValue() > numberTwo.doubleValue();
 	}
 
-	public final <T extends Number> boolean isLess(final T numberOne, final T numberTwo) {
+	public static final <T extends Number> boolean isLess(final T numberOne, final T numberTwo) {
 		return numberOne.doubleValue() < numberTwo.doubleValue();
 	}
 
-	public final <T extends Number> boolean isDifferent(final T numberOne, final T numberTwo) {
+	public static final <T extends Number> boolean isDifferent(final T numberOne, final T numberTwo) {
 		return numberOne.doubleValue() != numberTwo.doubleValue();
 	}
 
-	public final <T extends Number> boolean isEqual(final T numberOne, final T numberTwo) {
+	public static final <T extends Number> boolean isEqual(final T numberOne, final T numberTwo) {
 		return numberOne.doubleValue() == numberTwo.doubleValue();
 	}
 
@@ -41,7 +37,7 @@ public final class NumericHelper {
 		return numberOne.doubleValue() <= numberTwo.doubleValue();
 	}
 
-	public final <T extends Number> boolean isBetween(final T number, final T initialLimit, final T finalLimit,
+	public static final <T extends Number> boolean isBetween(final T number, final T initialLimit, final T finalLimit,
 			final boolean includeInitialLimit, final boolean includeFinalLimit) {
 		return (includeInitialLimit ? isGreatOrEqual(number, initialLimit) : isGreat(number, initialLimit))
 				&& (includeFinalLimit ? isLessOrEqual(number, finalLimit) : isLess(number, finalLimit));

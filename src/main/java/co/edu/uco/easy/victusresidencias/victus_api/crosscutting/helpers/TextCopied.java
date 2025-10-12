@@ -1,7 +1,25 @@
 package co.edu.uco.easy.victusresidencias.victus_api.crosscutting.helpers;
 
-public class TextCopied {
-	// Método para validar si una cadena representa un número (double)
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Utility class for text and number parsing operations.
+ * This class cannot be instantiated.
+ */
+public final class TextCopied {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TextCopied.class);
+    
+    private TextCopied() {
+        // Private constructor to prevent instantiation
+        throw new IllegalStateException("Utility class - cannot be instantiated");
+    }
+    /**
+     * Parses a string to a Double. Returns null if the string is null or not a valid number.
+     * 
+     * @param number the string to parse
+     * @return the parsed Double value, or null if the input is invalid
+     */
     public static Double parseNumber(final String number) {
         // Validamos si el string es nulo usando el método de TextHelper
         if (TextHelper.isNull(number)) {
@@ -10,7 +28,7 @@ public class TextCopied {
         try {
             return Double.parseDouble(number); // Convertir a double
         } catch (NumberFormatException e) {
-        	System.out.println(e+ " <-- No es un numero valido");
+            LOGGER.warn("Valor inválido para conversión numérica: {}", number, e);
             return null; // Si no es un número válido, retorna null.
         }
     }
@@ -72,15 +90,5 @@ public class TextCopied {
         }
         return number < 0;
     }
-//    
-//    public static void main(String[] args) {
-//    	Double num1 = NumericHelper.parseNumber("4.6");
-//        Double num2 = NumericHelper.parseNumber("10.0");
-//
-//        System.out.println("¿Es mayor "+num1+" que " +num2+" ?: " + NumericHelper.isGreaterThan(num1, num2));
-//        System.out.println("¿Son iguales "+num1+" y "+num2+" ?: " + NumericHelper.areEqual(num1, num2));
-//        System.out.println("¿Está el número " +num1+" en el rango (4.5, 9.5]?: " + NumericHelper.isInRange(num1, 4.5, false, 9.5, true));
-//        System.out.println("¿Es positivo " +num1+" ?: " + NumericHelper.isPositive(num1));
-//	}
 
 }

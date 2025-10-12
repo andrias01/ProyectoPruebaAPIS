@@ -2,7 +2,7 @@ package co.edu.uco.easy.victusresidencias.victus_api.crosscutting.exceptions;
 
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.exceptions.enums.Layer;
 
-public class BusinessLogicVictusResidenciasException extends VictusResidenciasException {
+public class BusinessLogicVictusResidenciasException extends UcoApplicationException {
 
 	private static final long serialVersionUID = 1L;
 
@@ -11,16 +11,16 @@ public class BusinessLogicVictusResidenciasException extends VictusResidenciasEx
 		super(userMessage, technicalMessage, rootException, Layer.BUSINESSLOGIC);
 	}
 
-	public static final BusinessLogicVictusResidenciasException create(final String userMessage, final String technicalMessage,
+	public static final BusinessLogicVictusResidenciasException crear(final String userMessage, final String technicalMessage,
 			final Exception rootException) {
 		return new BusinessLogicVictusResidenciasException(userMessage, technicalMessage, rootException);
 	}
 
-	public static final BusinessLogicVictusResidenciasException create(final String userMessage) {
+	public static final BusinessLogicVictusResidenciasException crear(final String userMessage) {
 		return new BusinessLogicVictusResidenciasException(userMessage, userMessage, new Exception());
 	}
 
-	public static final BusinessLogicVictusResidenciasException create(final String userMessage, final String technicalMessage) {
+	public static final BusinessLogicVictusResidenciasException crear(final String userMessage, final String technicalMessage) {
 		return new BusinessLogicVictusResidenciasException(userMessage, technicalMessage, new Exception());
 	}
 

@@ -14,14 +14,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //@CrossOrigin(origins = "https://tangerine-profiterole-824fd8.netlify.app")
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/administradores")
 public class AdministradorControlador {
-    private static final String NAMEclassSingular = "Administrador";
-    private static final String NAMEclassPlural = "Administradores";
+    private static final Logger LOGGER = LoggerFactory.getLogger(AdministradorControlador.class);
+    private static final String NAME_CLASS_SINGULAR = "Administrador";
+    private static final String NAME_CLASS_PLURAL = "Administradores";
+    private static final String NOT_FOUND_ID_MESSAGE = "No se encontró un %s con el ID especificado.";
 
     @Autowired
     private AdministratorService adminService;
@@ -38,12 +42,12 @@ public class AdministradorControlador {
         try {
             var entities = adminService.findAll();
             response.setData(entities);
-            messages.add(String.format("Los %s fueron consultados satisfactoriamente.", NAMEclassPlural));
+            messages.add(String.format("Los %s fueron consultados satisfactoriamente.", NAME_CLASS_PLURAL));
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            messages.add(String.format("Error al consultar los %s. Por favor intente nuevamente.", NAMEclassPlural));
+            LOGGER.error("Error al consultar los administradores", e);
+            messages.add(String.format("Error al consultar los %s. Por favor intente nuevamente.", NAME_CLASS_PLURAL));
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -58,18 +62,18 @@ public class AdministradorControlador {
         try {
             var entity = adminService.findById(id);
             if (entity.isEmpty()) {
-                messages.add(String.format("No se encontró un %s con el ID especificado.", NAMEclassSingular));
+                messages.add(String.format(NOT_FOUND_ID_MESSAGE, NAME_CLASS_SINGULAR));
                 response.setMessages(messages);
                 return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
             }
 
             response.setData(List.of(entity.get()));
-            messages.add(String.format("El %s fue consultado satisfactoriamente.", NAMEclassSingular));
+            messages.add(String.format("El %s fue consultado satisfactoriamente.", NAME_CLASS_SINGULAR));
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            messages.add(String.format("Error al consultar el %s. Por favor intente nuevamente.", NAMEclassSingular));
+            LOGGER.error("Error al consultar el administrador", e);
+            messages.add(String.format("Error al consultar el %s. Por favor intente nuevamente.", NAME_CLASS_SINGULAR));
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -82,34 +86,34 @@ public class AdministradorControlador {
         try {
             if (administrador.getName() == null || administrador.getName().isEmpty()) {
                 String userMessage = String.format("El %s es requerido para poder registrar la información.",
-                        NAMEclassSingular);
-                String technicalMessage = String.format("El %s en la clase %s llegó nulo o vacío.", NAMEclassSingular,
+                        NAME_CLASS_SINGULAR);
+                String technicalMessage = String.format("El %s en la clase %s llegó nulo o vacío.", NAME_CLASS_SINGULAR,
                         AdministratorEntity.class.getSimpleName());
                 throw BusinessLogicVictusResidenciasException.crear(userMessage, technicalMessage);
             }
 
             if (adminService.existsByName(administrador.getName())) {
-                String userMessage = String.format("El %s ya existe", NAMEclassSingular);
-                String technicalMessage = String.format("El %s con el nombre ", NAMEclassSingular)
+                String userMessage = String.format("El %s ya existe", NAME_CLASS_SINGULAR);
+                String technicalMessage = String.format("El %s con el nombre ", NAME_CLASS_SINGULAR)
                         + administrador.getName() + "' ya existe en la base de datos.";
                 throw BusinessLogicVictusResidenciasException.crear(userMessage, technicalMessage);
             }
 
             adminService.save(administrador);
-            messages.add(String.format("El %s se registró de forma satisfactoria.", NAMEclassSingular));
+            messages.add(String.format("El %s se registró de forma satisfactoria.", NAME_CLASS_SINGULAR));
             var response = new GenericResponse();
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (UcoApplicationException exception) {
             messages.add(exception.getUserMessage());
-            exception.printStackTrace();
+            LOGGER.error("Error de aplicación al crear administrador", exception);
             var response = new GenericResponse();
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } catch (Exception exception) {
             messages.add(
-                    String.format("Se ha presentado un problema inesperado al registrar el %s.", NAMEclassSingular));
-            exception.printStackTrace();
+                    String.format("Se ha presentado un problema inesperado al registrar el %s.", NAME_CLASS_SINGULAR));
+            LOGGER.error("Error inesperado al crear administrador", exception);
             var response = new GenericResponse();
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -133,14 +137,14 @@ public class AdministradorControlador {
             adminService.save(updatedAdmin);
 
             messages.add(
-                    String.format("El %s %s se actualizó correctamente.", NAMEclassSingular, updatedAdmin.getName()));
+                    String.format("El %s %s se actualizó correctamente.", NAME_CLASS_SINGULAR, updatedAdmin.getName()));
             responseWithData.setData(List.of(updatedAdmin));
             responseWithData.setMessages(messages);
             return new ResponseEntity<>(responseWithData, HttpStatus.OK);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            messages.add(String.format("Error al actualizar el %s. Por favor intente nuevamente.", NAMEclassSingular));
+            LOGGER.error("Error al actualizar administrador", e);
+            messages.add(String.format("Error al actualizar el %s. Por favor intente nuevamente.", NAME_CLASS_SINGULAR));
             responseWithData.setMessages(messages);
             return new ResponseEntity<>(responseWithData, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -154,21 +158,21 @@ public class AdministradorControlador {
         try {
             if (id == null) {
                 var userMessage = String.format("El ID del %S es requerido para poder eliminar la información.",
-                        NAMEclassSingular);
+                        NAME_CLASS_SINGULAR);
                 var technicalMessage = String.format("El ID del %s en la clase AdministratorEntity llegó nulo.",
-                        NAMEclassSingular);
+                        NAME_CLASS_SINGULAR);
                 throw BusinessLogicVictusResidenciasException.crear(userMessage, technicalMessage);
             }
 
             var existingAdmin = adminService.findById(id);
             if (existingAdmin.isEmpty()) {
-                messages.add(String.format("No se encontró un %s con el ID especificado.", NAMEclassSingular));
+                messages.add(String.format(NOT_FOUND_ID_MESSAGE, NAME_CLASS_SINGULAR));
                 response.setMessages(messages);
                 return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
             }
 
             adminService.deleteById(id);
-            messages.add(String.format("El %s se eliminó de manera satisfactoria.", NAMEclassSingular));
+            messages.add(String.format("El %s se eliminó de manera satisfactoria.", NAME_CLASS_SINGULAR));
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (UcoApplicationException e) {
@@ -176,8 +180,8 @@ public class AdministradorControlador {
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            e.printStackTrace();
-            messages.add(String.format("Error al eliminar el %s. Por favor intente nuevamente.", NAMEclassSingular));
+            LOGGER.error("Error al eliminar el administrador", e);
+            messages.add(String.format("Error al eliminar el %s. Por favor intente nuevamente.", NAME_CLASS_SINGULAR));
             response.setMessages(messages);
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -207,7 +211,7 @@ public class AdministradorControlador {
 
     private ResponseEntity<AdministratorResponse> buildNotFoundResponse(AdministratorResponse response,
             List<String> messages) {
-        messages.add(String.format("No se encontró un %s con el ID especificado.", NAMEclassSingular));
+        messages.add(String.format(NOT_FOUND_ID_MESSAGE, NAME_CLASS_SINGULAR));
         response.setMessages(messages);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }

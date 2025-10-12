@@ -30,7 +30,7 @@ public class TextHelper {
 	
 
 	public static boolean isNull(final String string) {
-		return ObjectHelper.isNull("");
+		return ObjectHelper.isNull(string);
 	}
 
 	public static String getDefault(final String string, final String defaultValue) {

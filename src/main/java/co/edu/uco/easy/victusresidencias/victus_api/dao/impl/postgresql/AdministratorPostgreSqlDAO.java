@@ -1,5 +1,8 @@
 package co.edu.uco.easy.victusresidencias.victus_api.dao.impl.postgresql;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.exceptions.DataVictusResidenciasException;
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.helpers.TextHelper;
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.helpers.UUIDHelper;
@@ -14,13 +17,14 @@ import java.util.List;
 import java.util.UUID;
 
 final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDAO {
-	private static final String FROM = "FROM administrador ";
-	private static final String SELECT = "SELECT id, nombre, apellido, tipo_documento, numero_documento, numero_contacto, email, contraseña ";
-	private static final String DELETE = "DELETE FROM administrador WHERE id = ?";
-	private static final String UPDATE = "UPDATE administrador SET nombre = ?, apellido = ?, tipo_documento = ?, numero_documento = ?, numero_contacto = ?, email = ?, contraseña = ? WHERE id = ?";
-	private static final String NAMEclassSingular = "Administrador";
-	private static final String NAMEclassPlural = "Administradores";
-	private static final String CREATEstatemente = "INSERT INTO administrador(id, nombre, apellido, tipo_documento, numero_documento, numero_contacto, email, contraseña) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final Logger LOGGER = LoggerFactory.getLogger(AdministratorPostgreSQLDAO.class);
+	private static final String SQL_FROM = "FROM administrador ";
+	private static final String SQL_SELECT = "SELECT id, nombre, apellido, tipo_documento, numero_documento, numero_contacto, email, contraseña ";
+	private static final String SQL_DELETE = "DELETE FROM administrador WHERE id = ?";
+	private static final String SQL_UPDATE = "UPDATE administrador SET nombre = ?, apellido = ?, tipo_documento = ?, numero_documento = ?, numero_contacto = ?, email = ?, contraseña = ? WHERE id = ?";
+	private static final String CLASS_NAME_SINGULAR = "Administrador";
+	private static final String CLASS_NAME_PLURAL = "Administradores";
+	private static final String SQL_CREATE = "INSERT INTO administrador(id, nombre, apellido, tipo_documento, numero_documento, numero_contacto, email, contraseña) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	public AdministratorPostgreSQLDAO(Connection connection) {
 		super(connection);
@@ -57,14 +61,14 @@ final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDA
 	            var statementIndex = arrayIndex + 1;
 	            preparedStatement.setObject(statementIndex, parameters.get(arrayIndex));
 	        }
-	        System.out.println("Sentencia preparada " + statement);
+	        LOGGER.debug("SQL statement prepared: {}", statement);
 	        statementWasPrepared = true;
 	        final var result = preparedStatement.executeQuery();
 	      //SELECT id, name, last_name, id_type, id_number, contact_number, email, password
 	        while (result.next()) {
 	            var administratorEntityTmp = new AdministratorEntity();
 	            administratorEntityTmp.setId(UUID.fromString(result.getString("id")));
-	            System.out.println("ID del admin insertado en LISTA para mostar " + UUID.fromString(result.getString("id")));
+	            LOGGER.debug("Administrator ID added to list: {}", UUID.fromString(result.getString("id")));
 	            administratorEntityTmp.setName(result.getString("nombre"));
 	            administratorEntityTmp.setLastName(result.getString("apellido"));
 	            administratorEntityTmp.setIdType(result.getString("tipo_documento"));
@@ -76,10 +80,10 @@ final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDA
 	            resultSelect.add(administratorEntityTmp);		
 	        }
 	    } catch (final SQLException exception) {
-			var userMessage = String.format("Se ha presentado un problema tratando de llevar a cabo la consulta de los %s.",NAMEclassPlural);
+			var userMessage = String.format("Se ha presentado un problema tratando de llevar a cabo la consulta de los %s.",CLASS_NAME_PLURAL);
 			var technicalMessage = statementWasPrepared ?
-					String.format("Problema ejecutando la consulta de los %s en la base de datos.",NAMEclassPlural) :
-					String.format("Problema preparando la consulta de los %s en la base de datos.",NAMEclassPlural);
+					String.format("Problema ejecutando la consulta de los %s en la base de datos.",CLASS_NAME_PLURAL) :
+					String.format("Problema preparando la consulta de los %s en la base de datos.",CLASS_NAME_PLURAL);
 
 			throw DataVictusResidenciasException.crear(userMessage, technicalMessage, exception);
 		}
@@ -87,24 +91,24 @@ final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDA
 	    return resultSelect;
 	}
 	
-	private void createSelect(final StringBuilder statement) {statement.append(SELECT);}
+	private void createSelect(final StringBuilder statement) {statement.append(SQL_SELECT);}
 	
 	private void createFrom(final StringBuilder statement) {
-		statement.append(FROM);
+		statement.append(SQL_FROM);
 	}
 
 	private void createWhere(final StringBuilder statement, 
             final AdministratorEntity filter, 
             final List<Object> parameters) {
 			if (!UUIDHelper.isDefault(filter.getId())) {
-				System.out.println("Sentencia preparada con where para el ID " + filter.getId());
+				LOGGER.debug("Prepared statement with WHERE clause for ID: {}", filter.getId());
 				statement.append("WHERE id = ? ");
 				parameters.add(filter.getId());
 			} else if (!TextHelper.isEmpty(filter.getName())) {
 				statement.append("WHERE nombre = ? ");
 				parameters.add(filter.getName());
 			} else if (!TextHelper.isEmpty(filter.getEmail())) {
-				System.out.println("Sentencia preparada con where para el EMAIL " + filter.getEmail());
+				LOGGER.debug("Prepared statement with WHERE clause for email: {}", filter.getEmail());
 				statement.append("WHERE email = ? ");
 				parameters.add(filter.getEmail());
 			}
@@ -122,17 +126,17 @@ final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDA
 	    filterEmail.setEmail(data.getEmail());
 	    if (!findByFilter(filter).isEmpty()) {
 			throw DataVictusResidenciasException.crear(
-					String.format("El %s ya existe",NAMEclassSingular),
-					String.format("No se puede crear un %s con el nombre duplicado: ",NAMEclassSingular) + data.getName());
+					String.format("El %s ya existe",CLASS_NAME_SINGULAR),
+					String.format("No se puede crear un %s con el nombre duplicado: ",CLASS_NAME_SINGULAR) + data.getName());
 	    }else if(!findByFilter(filterEmail).isEmpty()) {
 	        throw DataVictusResidenciasException.crear(
-		            String.format("El email del %s ya existe",NAMEclassSingular),
-					String.format("No se puede crear un %s con el email duplicado: ",NAMEclassSingular) + data.getEmail() );
+		            String.format("El email del %s ya existe",CLASS_NAME_SINGULAR),
+					String.format("No se puede crear un %s con el email duplicado: ",CLASS_NAME_SINGULAR) + data.getEmail() );
 	        		
 		}
 	    
 	    final StringBuilder statement = new StringBuilder();
-	    statement.append(CREATEstatemente);
+	    statement.append(SQL_CREATE);
 
 	    if (UUIDHelper.isDefault(data.getId())) {
 	        data.setId(UUIDHelper.generate());
@@ -149,11 +153,11 @@ final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDA
 	        preparedStatement.setString(8, data.getPassword());
 
 	        preparedStatement.executeUpdate();
-	        System.out.println("Se creó el administrador con el nombre " + data.getName() + " exitosamente-");
+	        LOGGER.info("Administrator created successfully with name: {}", data.getName());
 
 	    } catch (final SQLException exception) {
-			var userMessage = String.format("Se ha presentado un problema tratando de llevar a cabo el registro de la información del nuevo %s. Por favor intente de nuevo y si el problema persiste reporte la novedad...",NAMEclassSingular);
-			var technicalMessage = String.format("Se ha presentado un problema al tratar de registrar la información del nuevo %s en la base de datos postgreSQL. Por favor valide el log de errores para encontrar mayores detalles del problema presentado...",NAMEclassSingular);
+			var userMessage = String.format("Se ha presentado un problema tratando de llevar a cabo el registro de la información del nuevo %s. Por favor intente de nuevo y si el problema persiste reporte la novedad...",CLASS_NAME_SINGULAR);
+			var technicalMessage = String.format("Se ha presentado un problema al tratar de registrar la información del nuevo %s en la base de datos postgreSQL. Por favor valide el log de errores para encontrar mayores detalles del problema presentado...",CLASS_NAME_SINGULAR);
 
 			throw DataVictusResidenciasException.crear(userMessage, technicalMessage, exception);
 		}
@@ -161,16 +165,14 @@ final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDA
 
 	@Override
 	public void delete(UUID data) {
-		final StringBuilder statement = new StringBuilder();
-	    statement.append(DELETE);
-
-	    try (final var preparedStatement = getConnection().prepareStatement(statement.toString())) {
+	    final StringBuilder statement = new StringBuilder();
+	    statement.append(SQL_DELETE);	    try (final var preparedStatement = getConnection().prepareStatement(statement.toString())) {
 	        preparedStatement.setObject(1, data);
 	        preparedStatement.executeUpdate();
 
 	    } catch (final SQLException exception) {
-			var userMessage = String.format("Se ha presentado un problema tratando de eliminar el %s seleccionado. Por favor intente de nuevo y si el problema persiste reporte la novedad...",NAMEclassSingular);
-			var technicalMessage = String.format("Se ha presentado un problema al tratar de eliminar el %s en la base de datos PostgreSQL. Por favor valide el log de errores para encontrar mayores detalles del problema presentado...",NAMEclassSingular);
+			var userMessage = String.format("Se ha presentado un problema tratando de eliminar el %s seleccionado. Por favor intente de nuevo y si el problema persiste reporte la novedad...",CLASS_NAME_SINGULAR);
+			var technicalMessage = String.format("Se ha presentado un problema al tratar de eliminar el %s en la base de datos PostgreSQL. Por favor valide el log de errores para encontrar mayores detalles del problema presentado...",CLASS_NAME_SINGULAR);
 			throw DataVictusResidenciasException.crear(userMessage, technicalMessage, exception);
 		}
 	}
@@ -178,7 +180,7 @@ final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDA
 	@Override
 	public void update(AdministratorEntity data) {
 		final StringBuilder statement = new StringBuilder();
-	    statement.append(UPDATE);
+	    statement.append(SQL_UPDATE);
 
 	    try (final var preparedStatement = getConnection().prepareStatement(statement.toString())) {
 	        preparedStatement.setString(1, data.getName());
@@ -193,8 +195,8 @@ final class AdministratorPostgreSQLDAO extends SqlDAO implements AdministratorDA
 	        preparedStatement.executeUpdate();
 
 	    } catch (final SQLException exception) {
-			var userMessage = String.format("Se ha presentado un problema tratando de actualizar la información del %s. Por favor intente de nuevo y si el problema persiste reporte la novedad...",NAMEclassSingular);
-			var technicalMessage = String.format("Se ha presentado un problema al tratar de actualizar la información del %s en la base de datos PostgreSQL. Por favor valide el log de errores para encontrar mayores detalles del problema presentado...",NAMEclassSingular);
+			var userMessage = String.format("Se ha presentado un problema tratando de actualizar la información del %s. Por favor intente de nuevo y si el problema persiste reporte la novedad...",CLASS_NAME_SINGULAR);
+			var technicalMessage = String.format("Se ha presentado un problema al tratar de actualizar la información del %s en la base de datos PostgreSQL. Por favor valide el log de errores para encontrar mayores detalles del problema presentado...",CLASS_NAME_SINGULAR);
 
 			throw DataVictusResidenciasException.crear(userMessage, technicalMessage, exception);
 		}
