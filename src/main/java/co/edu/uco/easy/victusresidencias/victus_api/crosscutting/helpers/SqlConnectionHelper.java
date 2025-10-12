@@ -12,6 +12,7 @@ public final class SqlConnectionHelper {
     private static final String UNEXPECTED_PROBLEM_USER_MESSAGE = "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada...";
     private static final String UNEXPECTED_PROBLEM_ALTERNATIVE_USER_MESSAGE = "Se ha presentado un problema inesperado, tratando de llevar a cabo la operación deseada...";
     private static final String SQL_EXCEPTION_TECHNICAL_MESSAGE = "Se ha presentado una excepción de tipo SQLException tratando de %s. Por favor revise el log de errores para tener más detalles del error presentado...";
+	private static final String SQL_EXCEPTION_TECHNICAL_MESSAGE_NEXT = " obtener la conexión con la fuente de datos SQL deseada...";
 
 	private SqlConnectionHelper() {
         // Private constructor to prevent instantiation
@@ -98,7 +99,7 @@ public final class SqlConnectionHelper {
 	public static void validateIfTransactionWasNotInitiated(final Connection connection) {
 		try {
 			if (connection.getAutoCommit()) {
-				var userMessage = "Se ha presentado un problema inesperado, tratando de llevar a cabo la operación deseada...";
+				var userMessage = UNEXPECTED_PROBLEM_ALTERNATIVE_USER_MESSAGE;
 				var technicalMessage = "La transacción no ha sido iniciada previamente para llevar a cabo la operación deseada en la base de datos SQL deseada...";
 				throw new UcoApplicationException(userMessage, technicalMessage, new Exception(), Layer.DATA);
 			}
@@ -128,7 +129,7 @@ public final class SqlConnectionHelper {
 			return DriverManager.getConnection(connectionString);
 		} catch (final SQLException exception) {
 			var userMessage = UNEXPECTED_PROBLEM_USER_MESSAGE;
-			var technicalMessage = String.format(SQL_EXCEPTION_TECHNICAL_MESSAGE, "obtener la conexión con la fuente de datos SQL deseada");
+			var technicalMessage = String.format(SQL_EXCEPTION_TECHNICAL_MESSAGE, SQL_EXCEPTION_TECHNICAL_MESSAGE_NEXT);
 			throw new UcoApplicationException(userMessage, technicalMessage, exception, Layer.DATA);
 		}
 	}
@@ -139,7 +140,7 @@ public final class SqlConnectionHelper {
 			return DriverManager.getConnection(url,user,password);
 		} catch (final SQLException exception) {
 			var userMessage = UNEXPECTED_PROBLEM_USER_MESSAGE;
-			var technicalMessage = String.format(SQL_EXCEPTION_TECHNICAL_MESSAGE, "obtener la conexión con la fuente de datos SQL deseada");
+			var technicalMessage = String.format(SQL_EXCEPTION_TECHNICAL_MESSAGE, SQL_EXCEPTION_TECHNICAL_MESSAGE_NEXT);
 			throw new UcoApplicationException(userMessage, technicalMessage, exception, Layer.DATA);
 		}
 	}
@@ -149,7 +150,7 @@ public final class SqlConnectionHelper {
 			return DriverManager.getConnection(url);
 		} catch (final SQLException exception) {
 			var userMessage = UNEXPECTED_PROBLEM_USER_MESSAGE;
-			var technicalMessage = String.format(SQL_EXCEPTION_TECHNICAL_MESSAGE, "obtener la conexión con la fuente de datos SQL deseada");
+			var technicalMessage = String.format(SQL_EXCEPTION_TECHNICAL_MESSAGE, SQL_EXCEPTION_TECHNICAL_MESSAGE_NEXT);
 			throw new UcoApplicationException(userMessage, technicalMessage, exception, Layer.DATA);
 		}
 	}

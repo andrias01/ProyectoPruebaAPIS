@@ -29,11 +29,11 @@ public final class NumericHelper {
 		return numberOne.doubleValue() == numberTwo.doubleValue();
 	}
 
-	public final static <T extends Number> boolean isGreatOrEqual(final T numberOne, final T numberTwo) {
+	public static final  <T extends Number> boolean isGreatOrEqual(final T numberOne, final T numberTwo) {
 		return numberOne.doubleValue() >= numberTwo.doubleValue();
 	}
 
-	public final static <T extends Number> boolean isLessOrEqual(final T numberOne, final T numberTwo) {
+	public static final <T extends Number> boolean isLessOrEqual(final T numberOne, final T numberTwo) {
 		return numberOne.doubleValue() <= numberTwo.doubleValue();
 	}
 
