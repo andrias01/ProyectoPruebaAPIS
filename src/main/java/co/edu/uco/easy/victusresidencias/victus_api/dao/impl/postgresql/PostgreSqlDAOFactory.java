@@ -4,7 +4,6 @@ import java.sql.Connection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import jakarta.annotation.PostConstruct;
 import co.edu.uco.easy.victusresidencias.victus_api.crosscutting.helpers.SqlConnectionHelper;
 import co.edu.uco.easy.victusresidencias.victus_api.dao.*;
 

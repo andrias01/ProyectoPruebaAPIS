@@ -35,7 +35,6 @@ public class AdministradorControlador {
     public ResponseEntity<AdministratorResponse> retrieveAll() {
         var response = new AdministratorResponse();
         var messages = new ArrayList<String>();
-        System.out.println(adminService.findAll());
         try {
             var entities = adminService.findAll();
             response.setData(entities);
