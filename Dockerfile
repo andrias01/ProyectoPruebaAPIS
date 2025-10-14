@@ -1,5 +1,7 @@
-FROM amazoncorretto:25-alpine-jdk
+FROM amazoncorretto:21-alpine-jdk
 
+WORKDIR /app
 COPY target/victus-api-0.0.1-SNAPSHOT.jar app.jar
 
+EXPOSE 8080
 ENTRYPOINT ["java" , "-jar" , "/app.jar"]

@@ -12,13 +12,13 @@ public final class PostgreSqlDAOFactory extends DAOFactory {
 
     private Connection connection;
 
-    @Value("${spring.datasource.railway.url}")
+    @Value("${spring.datasource.url}")
     private String url;
 
-    @Value("${spring.datasource.railway.username}")
+    @Value("${spring.datasource.username}")
     private String user;
 
-    @Value("${spring.datasource.railway.password:NOT_FOUND}")
+    @Value("${spring.datasource.password:NOT_FOUND}")
     private String password;
 
     public PostgreSqlDAOFactory(Environment environment) {
@@ -31,6 +31,7 @@ public final class PostgreSqlDAOFactory extends DAOFactory {
     protected void openConnection() {
         SqlConnectionHelper.validateIfConnectionIsOpen(connection);
         connection = SqlConnectionHelper.openConnectionPostgreSQL(url, user, password);
+        
     }
 
     @Override
@@ -58,3 +59,4 @@ public final class PostgreSqlDAOFactory extends DAOFactory {
         return new AdministratorPostgreSQLDAO(connection);
     }
 }
+
