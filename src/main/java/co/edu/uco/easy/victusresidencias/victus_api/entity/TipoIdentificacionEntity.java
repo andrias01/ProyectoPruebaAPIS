@@ -11,9 +11,13 @@ public class TipoIdentificacionEntity extends DomainEntity {
     @Column(nullable = false, name = "nombre", length = 50)
     private String nombre;
 
+    @Column(nullable = false, name = "codigo", length = 10, unique = true)
+    private String codigo;
+
     public TipoIdentificacionEntity() {
         super(UUIDHelper.getDefault());
         setNombre(TextHelper.EMPTY);
+        setCodigo(TextHelper.EMPTY);
     }
 
     public static final TipoIdentificacionEntity create() {
@@ -26,6 +30,14 @@ public class TipoIdentificacionEntity extends DomainEntity {
 
     public void setNombre(String nombre) {
         this.nombre = TextHelper.applyTrim(nombre);
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = TextHelper.applyTrim(codigo);
     }
 
     @Override
